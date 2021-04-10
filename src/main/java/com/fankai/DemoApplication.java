@@ -30,4 +30,6 @@ public class DemoApplication {
  * 		2.@EnableAutoConfiguration:利用selectTor选择器扫描类路径下的所有jar包，将扫描到的内容包装成properties对象
  * 		3.将类路径下的META-INF/spring.factories里面的所有EnableAutoConfiguration值加载到容器中
  * 		4.每一个自动配置类进行自动配置功能；
+ *
+ *
  */
