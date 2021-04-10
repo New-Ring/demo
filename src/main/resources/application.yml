@@ -1,0 +1,22 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /demo
+
+spring:
+  profiles:
+    active: dev
+
+person:
+  name: 张三${random.uuid}
+  age: ${random.int}
+  tellPhone: ${person.age}
+  sex: true
+  map: {key:value}
+  birth: 1993/10/28
+  list:
+    - ${person.age}
+    - 2
+    - 3
+
+
