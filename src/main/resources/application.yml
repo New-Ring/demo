@@ -7,6 +7,15 @@ spring:
   profiles:
     active: dev
 
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    dao: debug
+    org:
+      mybatis: debug
+
+
+---
 person:
   name: 张三${random.uuid}
   age: ${random.int}
