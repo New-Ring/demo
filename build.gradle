@@ -20,6 +20,20 @@ dependencies { //版本仲裁，管理所有的springboot包
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'com.baomidou:mybatis-plus-boot-starter'
+	implementation 'com.baomidou:mybatis-plus-generator'
+//	implementation 'com.github.alenfive:rocket-api-boot-starter'
+}
+
+dependencyManagement {
+	dependencies {
+		dependency 'com.baomidou:mybatis-plus-boot-starter:3.4.1'
+		dependency 'com.baomidou:mybatis-plus-generator:3.4.1'
+//		dependency 'com.github.alenfive:rocket-api-boot-starter:2.3.5.RELEASE'
+	}
 }
 
 test {
