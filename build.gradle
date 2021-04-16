@@ -25,6 +25,8 @@ dependencies { //版本仲裁，管理所有的springboot包
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'com.baomidou:mybatis-plus-boot-starter'
 	implementation 'com.baomidou:mybatis-plus-generator'
+	implementation 'cn.hutool:hutool-all'
+	implementation 'org.apache.commons:commons-lang3'
 //	implementation 'com.github.alenfive:rocket-api-boot-starter'
 }
 
@@ -32,6 +34,8 @@ dependencyManagement {
 	dependencies {
 		dependency 'com.baomidou:mybatis-plus-boot-starter:3.4.1'
 		dependency 'com.baomidou:mybatis-plus-generator:3.4.1'
+		dependency 'cn.hutool:hutool-all:4.5.7'
+		dependency 'org.apache.commons:commons-lang3:3.3.2'
 //		dependency 'com.github.alenfive:rocket-api-boot-starter:2.3.5.RELEASE'
 	}
 }
