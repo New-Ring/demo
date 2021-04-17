@@ -1,5 +1,6 @@
 package com.fankai.reflex;
 
+import com.fankai.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
@@ -10,12 +11,18 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 代理模式案例
+ * 代理模式案例,
+ * 1.jdk创建对象的速度远大于cglib，这是由于cglib创建对象时需要操作字节码。
+ * 2.cglib执行速度略大于jdk，所以比较适合单例模式。
+ * 3.另外由于CGLIB的大部分类是直接对Java字节码进行操作，这样生成的类会在Java的永久堆中。如果动态代理操作过多，容易造成永久堆满，触发OutOfMemory异常。
+ * 4.spring默认使用jdk动态代理，如果类没有接口，则使用cglib。
  */
-public class DynamicProxyTest01 {
+public class DynamicProxyTest {
     @Test
     public void test(){
-        User user = new User("范凯",12);
+        User user = new User();
+        user.setAge(18);
+        user.setName("范凯");
         /**
          * jdk动态代理必须有接口实现才能使用
          */
@@ -26,8 +33,8 @@ public class DynamicProxyTest01 {
         /**
          * CGLIB代理,可以不用嵌入接口
          */
-        CGLIBFactory factory1 = new CGLIBFactory(new UserImpl2());
-        UserImpl2 user2 = (UserImpl2)factory1.getBean();
+        CGLIBFactory factory1 = new CGLIBFactory();
+        UserImpl2 user2 = (UserImpl2)factory1.getBean(UserImpl2.class);
         user2.say(user);
     }
 }
@@ -66,14 +73,13 @@ class DynamicFactory implements InvocationHandler {
     public DynamicFactory(Object proxy){
         this.proxy = proxy;
     }
+
     LogTest log = new LogTest();
+
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if(args != null){
-            log.before(args[0]);
-        }
-        Object obj = method.invoke(this.proxy,args);
-        return obj;
+        if(args != null) log.before(args[0]);
+        return method.invoke(this.proxy,args);
     }
 
     //生成代理类
@@ -87,61 +93,20 @@ class DynamicFactory implements InvocationHandler {
  * CGLIB动态工厂
  */
 class CGLIBFactory implements MethodInterceptor {
-    private Object proxy;
-
-    public CGLIBFactory(Object proxy){
-        this.proxy = proxy;
-    }
-
     LogTest log = new LogTest();
 
     @Override
     public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
-        if(args != null){
-            log.before(args[0]);
-        }
-        Object obj = method.invoke(this.proxy, args); // 目标方法执行
-        return obj;
+        if(args != null) log.before(args[0]);
+        return methodProxy.invokeSuper(proxy, args); // 目标方法执行
     }
 
     //生成代理类
-    public Object getBean(){
+    public Object getBean(Class<?> clazz){
         Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(proxy.getClass());
+        enhancer.setSuperclass(clazz);
         enhancer.setCallback(this);
         return enhancer.create();
     }
 }
 
-class User{
-    private String name;
-    private int age;
-    public User(String name,int age){
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
-}
