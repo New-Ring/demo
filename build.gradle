@@ -29,11 +29,13 @@ dependencies { //版本仲裁，管理所有的springboot包
 	implementation 'org.apache.commons:commons-lang3'
 	implementation 'com.alibaba:druid-spring-boot-starter'
 	implementation 'com.alibaba:fastjson'
+//	implementation 'com.actionsoft:bpms'
 //	implementation 'com.github.alenfive:rocket-api-boot-starter'
 }
 
 dependencyManagement {
 	dependencies {
+//		dependency 'com.actionsoft:bpms:1.0'
 		dependency 'com.alibaba:fastjson:1.2.34'
 		dependency 'com.alibaba:druid-spring-boot-starter:1.1.10'
 		dependency 'com.baomidou:mybatis-plus-boot-starter:3.4.1'

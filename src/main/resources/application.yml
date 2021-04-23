@@ -6,6 +6,8 @@ server:
 spring:
   profiles:
     active: dev
+  aop:
+    auto: true #启动aop配置
 
 logging:
   config: classpath:logback-spring.xml
