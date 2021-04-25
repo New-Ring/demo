@@ -19,7 +19,6 @@ import java.util.Map;
 @Slf4j
 public class BpmUtil {
 
-
     public final static String PROCESS_DEF_ID = "processDefId";
     public final static String PROCESS_INST_ID = "processInstId";
     public static final String BO_CREATE = "bo.create";
@@ -32,14 +31,9 @@ public class BpmUtil {
     public final static String RECORD_DATA_S = "recordDatas";
     public final static String BIND_ID = "bindId";
     public final static String MAIN_BO_ID = "mainBoId";
-    public final static String SUB_BO_ID = "subBoId";
     public final static String SUB_BO_IDS = "subBoIds";
-
     public final static String TASK_ID = "taskId";
-    public final static String PROCESS_STATE = "processState";
-    public final static String TASK_INST_ID = "taskInstId";
     public final static String PORT_URL = "portUrl";
-    public final static String PROCESS_DATA = "processData";
     public final static String ATT_KEY = "attKey";
     public final static String ATT_NAME = "attName";
 
@@ -47,14 +41,12 @@ public class BpmUtil {
     public static final String PROCESS_CREATE = "process.create";
     public static final String PROCESS_START = "process.start";
     public static final String PROCESS_INST_GET = "process.inst.get";
-    public static final String TASK_COMPLETE = "task.complete";
-    public static final String EXT_PROCESS_CREATE = "ext.process.create";
-    public static final String COM_AWSPAAS_USER_APPS_BGY = "com.awspaas.user.apps.bgy";
-    public static final String ZBFILE = "ZBFILE";
 
     private static String apiServer = "http://bpmuat.zberpnc.com/portal/openapi";
     private static String accessKey = "Salesforce#1";
     private static String secret = "0a799959-8327";
+    public static String portUrl = "http://bpmuat.zberpnc.com/portal/r/w?cmd=com.zb.common.sso_openForm";
+    private static String filePath = "http://10.88.6.4:8800/BUILD/file/downPFile/";
 
     /**
      * 创建流程
@@ -220,6 +212,16 @@ public class BpmUtil {
             StringBuffer suBoIds = bosCreate(boData, bosData, uid, bindId);  //推送子表数据
             processStart(bindId); //启动流程
             String taskInstId = getTaskInitId(bindId); //获取任务id
+
+            JSONObject jsonObject = new JSONObject();
+            String url = portUrl + "&processInstId=" + bindId + "&taskInstId=" + taskInstId + "&openState=1&uid=" + uid + "&ismobile=false";
+            jsonObject.put(MAIN_BO_ID, mainBoId);
+            jsonObject.put(PROCESS_INST_ID, bindId);
+            jsonObject.put(TASK_ID, taskInstId);
+            jsonObject.put(PORT_URL, url);
+            jsonObject.put(SUB_BO_IDS, suBoIds);
+            log.info("jsonObject---->{}", jsonObject.toJSONString());
+            return jsonObject;
         }
         return null;
     }
