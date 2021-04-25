@@ -1,5 +1,6 @@
 package com.fankai.bpm;
 
+
 import com.actionsoft.bpms.api.OpenApiClient;
 import com.actionsoft.bpms.api.common.ApiResponse;
 import com.actionsoft.sdk.service.response.BoolResponse;
@@ -65,8 +66,7 @@ public class BpmUtil {
         args.put(VARS, vars);
         OpenApiClient client = getOpenApiClient();
         try {
-            ProcessInstResponse r = client.exec(PROCESS_CREATE, args, ProcessInstResponse.class);
-            return r.getData().getId();
+            return client.exec(PROCESS_CREATE, args, ProcessInstResponse.class).getData().getId();
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new Exception("流程创建失败");
@@ -87,8 +87,7 @@ public class BpmUtil {
         args.put("uid", uid);
         OpenApiClient client = getOpenApiClient();
         try {
-            BoolResponse r = client.exec(PROCESS_DELETE, args, BoolResponse.class);
-            return r.isData();
+            return client.exec(PROCESS_DELETE, args, BoolResponse.class).isData();
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new Exception("流程删除失败");

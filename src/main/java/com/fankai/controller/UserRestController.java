@@ -1,7 +1,10 @@
 package com.fankai.controller;
 
+import com.fankai.annotation.Bpm;
 import com.fankai.aspect.BizException;
+import com.fankai.bpm.BpmUtil;
 import com.fankai.entity.User;
+import com.fankai.enums.ProcessDefId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -38,14 +41,21 @@ public class UserRestController {
     }
 
     @GetMapping("/user")
-    public List<User> findByUser(User user) {
-        System.out.println("开始查询...");
+    @Bpm(detail = "注解aop案例",processDefId= ProcessDefId.PROJECT_AC_BUDGET_SEND)
+    public List<User> findByUser(User user) throws Exception{
+        System.out.println("开始查询...:"+user.getName());
         List<User> userList =new ArrayList<>();
         User user2=new User();
         user2.setId(1L);
-        user2.setName("xuwujing");
+        user2.setName(user.getName());
         user2.setAge(18);
         userList.add(user2);
+        try{
+            BpmUtil.createBpmFlow(null,null,null,null,null,null);
+        }catch (Exception e){
+            throw new Exception("审批流发起失败");
+        }
+
         return userList;
     }
 }
