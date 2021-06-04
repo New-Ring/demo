@@ -12,9 +12,9 @@
     <!--目标类 -->
     <!--<bean id="customerDao" class="com.fankai.factorybean.CustomerDaoImpl" />-->
 
-    <context:component-scan base-package="com.fankai"/>
-    <!-- 使切面开启自动代理 -->
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <!--<context:component-scan base-package="com.fankai"/>
+    &lt;!&ndash; 使切面开启自动代理 &ndash;&gt;
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
     <!-- 环绕通知 advice -->
     <!--<bean id="myAspect" class="com.fankai.factorybean.MyAspect" />
     &lt;!&ndash; 前置通知 advice &ndash;&gt;

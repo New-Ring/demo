@@ -30,6 +30,9 @@ dependencies { //版本仲裁，管理所有的springboot包
 	implementation 'org.apache.commons:commons-lang3'
 	implementation 'com.alibaba:druid-spring-boot-starter'
 	implementation 'com.alibaba:fastjson'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.apache.commons:commons-pool2'
+	implementation 'com.google.guava:guava:30.1.1-jre'
 	compile fileTree(dir:'lib',includes:['*jar'])   // 导入本地jar
 //	implementation 'com.github.alenfive:rocket-api-boot-starter'
 }
