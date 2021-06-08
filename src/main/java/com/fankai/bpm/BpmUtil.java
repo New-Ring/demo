@@ -43,10 +43,10 @@ public class BpmUtil {
     public static final String PROCESS_START = "process.start";
     public static final String PROCESS_INST_GET = "process.inst.get";
 
-    private static String apiServer = "http://bpmuat.zberpnc.com/portal/openapi";
-    private static String accessKey = "Salesforce#1";
-    private static String secret = "0a799959-8327";
-    public static String portUrl = "http://bpmuat.zberpnc.com/portal/r/w?cmd=com.zb.common.sso_openForm";
+    private static String apiServer = "http://pal.zhengbang.com/portal/openapi";
+    private static String accessKey = "webapis";
+    private static String secret = "20191024#";
+    public static String portUrl = "http://pal.zhengbang.com/portal/r/w?cmd=com.zb.common.sso_openForm";
     private static String filePath = "http://10.88.6.4:8800/BUILD/file/downPFile/";
 
     /**
