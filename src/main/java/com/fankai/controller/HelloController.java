@@ -1,7 +1,5 @@
 package com.fankai.controller;
 
-import com.actionsoft.bpms.commons.database.RowMap;
-import com.actionsoft.bpms.util.DBSql;
 import com.fankai.util.IpAddressUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
@@ -14,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.net.URLDecoder;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/say")
@@ -24,7 +19,7 @@ import java.util.Map;
 public class HelloController {
 
     @GetMapping("/hello")
-    public String sayHello(){
+    public String sayHello() {
         return "卢莹大傻逼";
     }
 
@@ -36,7 +31,7 @@ public class HelloController {
     }
 
     @RequestMapping("/getRemortIP")
-    public String getRemortIP(HttpServletRequest request){
+    public String getRemortIP(HttpServletRequest request) {
         return IpAddressUtil.getIP(request);
     }
 
