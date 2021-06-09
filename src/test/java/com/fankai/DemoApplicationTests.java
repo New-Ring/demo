@@ -22,9 +22,9 @@ class DemoApplicationTests {
         System.out.println(person);
     }
 
-    @Test
+    /*@Test
     void updateFile() {
-        /*String path = "D:\\B站视频\\soft\\springboot";
+        String path = "D:\\B站视频\\soft\\springboot";
         File file = new File(path);
         File[] array = file.listFiles();
         for (int i = 0; i < array.length; i++) {
@@ -39,8 +39,8 @@ class DemoApplicationTests {
             } else if (array[i].isDirectory()) {
                 System.out.println("错误了");
             }
-        }*/
-    }
+        }
+    }*/
 
 	/**
 	 * 日志级别
