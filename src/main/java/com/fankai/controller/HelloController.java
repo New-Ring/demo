@@ -75,22 +75,5 @@ public class HelloController {
         }
     }
 
-    @RequestMapping("/updateBpm")
-    public void updateBpm(HttpServletRequest request){
-        StringBuffer sql = new StringBuffer();
-        sql.append("select * from BO_EU_BYY_JXLC_MX  where id=? " );
-        List<RowMap> pnoList = DBSql.getMaps(sql.toString(), new Object[]{"1e9ff99c-cbab-4c6a-9fe7-37382ab531fa"});
-        if (pnoList.size()>0) {
-            RowMap rowMap = pnoList.get(0);
-            /*for (Map project : projects) {
-                project.put("GLLC", rowMap.getString("BT"));
-                project.put("GLLCID", rowMap.getString("BINDID"));
-            }*/
-        }
-        /*try {
-            DBSql.update("UPDATE BO_EU_BYY_JXLC_MX set DYKHRPF=25 ,ZPF=25 WHERE ID=? ", new Object[]{"1e9ff99c-cbab-4c6a-9fe7-37382ab531fa"});
-        } catch (Exception e) {
-            log.error("考核人评分更新错误：" + e.getMessage());
-        }*/
-    }
+
 }
