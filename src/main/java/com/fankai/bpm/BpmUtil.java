@@ -4,6 +4,7 @@ package com.fankai.bpm;
 import com.actionsoft.bpms.api.OpenApiClient;
 import com.actionsoft.bpms.api.common.ApiResponse;
 import com.actionsoft.sdk.service.response.BoolResponse;
+import com.actionsoft.sdk.service.response.ListMapResponse;
 import com.actionsoft.sdk.service.response.StringResponse;
 import com.actionsoft.sdk.service.response.process.ProcessInstResponse;
 import com.alibaba.fastjson.JSONArray;
@@ -24,6 +25,7 @@ public class BpmUtil {
     public final static String PROCESS_INST_ID = "processInstId";
     public static final String BO_CREATE = "bo.create";
     public static final String BO_CREATES = "bo.creates";
+    public static final String BO_UPDATE = "bo.update";
     public final static String UID = "uid";
     public final static String TITLE = "title";
     public final static String VARS = "vars";
@@ -131,6 +133,39 @@ public class BpmUtil {
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new Exception("推送主表数据失败");
+        }
+    }
+
+    public static String boUpdate() throws Exception{
+        Map<String, Object> args = new HashMap(8);
+        OpenApiClient client = getOpenApiClient();
+        args.put(BO_NAME, "BO_EU_BYY_JXLC_MX");
+        JSONObject data = new JSONObject();
+        data.put("ID","1e9ff99c-cbab-4c6a-9fe7-37382ab531fa");
+        data.put("SJWC","已完成APP首页展示");
+        data.put("ZPF","25");
+        data.put("DYKHRPF","25");
+        args.put(RECORD_DATA, data);
+        try {
+            return client.exec(BO_UPDATE, args, StringResponse.class).getData();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new Exception("更新数据失败");
+        }
+    }
+
+    public static ListMapResponse boQuery() throws Exception{
+        Map<String, Object> args = new HashMap(8);
+        OpenApiClient client = getOpenApiClient();
+        args.put(BO_NAME, "BO_EU_BYY_JXLC_MX");
+        /*JSONObject data = new JSONObject();
+        data.put("ID=","1e9ff99c-cbab-4c6a-9fe7-37382ab531fa");*/
+        args.put("querys", "[[\"BINDID=\",\"2f540600-eaef-4c4b-9771-3da754df9e7c\"]]");//data.toJSONString()
+        try {
+            return client.exec("bo.query", args, ListMapResponse.class);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new Exception("查询失败");
         }
     }
 
