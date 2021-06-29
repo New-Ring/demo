@@ -12,15 +12,15 @@ import java.io.File;
 @SpringBootTest
 class DemoApplicationTests {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
+//    Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
+   /* @Autowired
     Person person;
 
     @Test
     void contextLoads() {
         System.out.println(person);
-    }
+    }*/
 
     /*@Test
     void updateFile() {
@@ -45,7 +45,7 @@ class DemoApplicationTests {
 	/**
 	 * 日志级别
 	 */
-	@Test
+	/*@Test
     void logTest() {
 		logger.trace("trace日志是最低级别");
 		logger.debug("debug日志是第二低级别，默认不输出");
@@ -53,5 +53,5 @@ class DemoApplicationTests {
 		logger.warn("warn日志是第四低级别，默认输出");
 		logger.error("error日志是最高级别，默认输出");
 
-    }
+    }*/
 }

@@ -3,9 +3,12 @@ package com.fankai.bpm;
 
 import com.actionsoft.bpms.api.OpenApiClient;
 import com.actionsoft.bpms.api.common.ApiResponse;
+import com.actionsoft.sdk.service.model.ProcessInstance;
 import com.actionsoft.sdk.service.response.BoolResponse;
 import com.actionsoft.sdk.service.response.ListMapResponse;
+import com.actionsoft.sdk.service.response.ObjectResponse;
 import com.actionsoft.sdk.service.response.StringResponse;
+import com.actionsoft.sdk.service.response.process.ParticipantsGetResponse;
 import com.actionsoft.sdk.service.response.process.ProcessInstResponse;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -16,6 +19,7 @@ import org.springframework.util.Assert;
 
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -45,11 +49,17 @@ public class BpmUtil {
     public static final String PROCESS_START = "process.start";
     public static final String PROCESS_INST_GET = "process.inst.get";
 
-    private static String apiServer = "http://pal.zhengbang.com/portal/openapi";
+    /*private static String apiServer = "http://pal.zhengbang.com/portal/openapi";
     private static String accessKey = "webapis";
     private static String secret = "20191024#";
     public static String portUrl = "http://pal.zhengbang.com/portal/r/w?cmd=com.zb.common.sso_openForm";
-    private static String filePath = "http://10.88.6.4:8800/BUILD/file/downPFile/";
+    private static String filePath = "http://10.88.6.4:8800/BUILD/file/downPFile/";*/
+
+
+    private static String apiServer = "http://bpmuat.zberpnc.com/portal/openapi";
+    private static String accessKey = "Salesforce#1";
+    private static String secret = "0a799959-8327";
+    public static String portUrl = "http://bpmuat.zberpnc.com/portal/r/w?cmd=com.zb.common.sso_openForm";
 
     /**
      * 创建流程
@@ -153,6 +163,22 @@ public class BpmUtil {
             throw new Exception("更新数据失败");
         }
     }
+
+    public static Object processHistoryParticipantsGet(String processId,String nodeId)  throws Exception{
+        Map<String, Object> args = new HashMap(8);
+        OpenApiClient client = getOpenApiClient();
+        args.put("processDefId", processId);
+        args.put("activityDefId", nodeId);
+        return client.exec("ext.task.getActivityModel", args, ObjectResponse.class).getData();
+    }
+    public static List<String> processHistoryParticipantsGet1(String processId,String nodeId)  throws Exception{
+        Map<String, Object> args = new HashMap(8);
+        OpenApiClient client = getOpenApiClient();
+        args.put("processInstId", processId);
+        args.put("activityDefId", nodeId);
+        return client.exec("process.historyParticipants.get", args, ParticipantsGetResponse.class).getData();
+    }
+
 
     public static ListMapResponse boQuery() throws Exception{
         Map<String, Object> args = new HashMap(8);

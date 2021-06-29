@@ -35,6 +35,7 @@ dependencies { //版本仲裁，管理所有的springboot包
 	implementation 'com.google.guava:guava:30.1.1-jre'
 	implementation 'org.springframework.kafka:spring-kafka'
 	compile fileTree(dir:'lib',includes:['*jar'])   // 导入本地jar
+	compile('org.springframework.boot:spring-boot-starter-amqp')
 //	implementation 'com.github.alenfive:rocket-api-boot-starter'
 }
 

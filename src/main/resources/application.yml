@@ -45,6 +45,17 @@ spring:
         session.timeout.ms: 15000
       group-id: group
 
+  rabbitmq:
+    enable: 0
+    host: 192.168.22.236
+    username: guest
+    password: guest
+    port: 15672
+    #template:
+      # 缺省的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个
+     # exchange: novel.exchange
+    publisher-confirms: false
+
 logging:
   config: classpath:logback-spring.xml
   level:
