@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 由 Spring容器创建该类的实例对象 -->
+    <bean id="personDao" class="com.mengma.ioc.impl.PersonDaoImpl" />
+
+    <bean id="personService" class="com.mengma.service.impl.PersonServiceImpl">
+        <!-- 将personDao实例注入personService实例中 -->
+        <property name="personDao" ref="personDao"/>
+    </bean>
+
+    <bean id="personDao1" class="com.mengma.ioc.impl.PersonDaoImpl" scope="prototype"/>
+
+    <!--<bean id="person" class="com.mengma.entity.Person">
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="20" />
+    </bean>-->
+
+    <bean id="person2" class="com.mengma.entity.Person">
+        <constructor-arg index="0" value="lisi" />
+        <constructor-arg index="1" value="21" />
+    </bean>
+</beans>
