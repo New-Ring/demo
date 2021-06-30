@@ -1,6 +1,6 @@
 package com.mengma.reflex;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;

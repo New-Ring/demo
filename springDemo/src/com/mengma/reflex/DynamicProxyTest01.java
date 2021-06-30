@@ -1,9 +1,9 @@
 package com.mengma.reflex;
 
-import org.junit.Test;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
+import org.testng.annotations.Test;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

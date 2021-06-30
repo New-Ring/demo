@@ -4,10 +4,11 @@ import com.mengma.entity.Person;
 import com.mengma.ioc.CustomerDao;
 import com.mengma.ioc.PersonDao;
 import com.mengma.service.PersonService;
-import org.junit.Test;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.CollectionUtils;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;

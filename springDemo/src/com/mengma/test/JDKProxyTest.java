@@ -2,7 +2,7 @@ package com.mengma.test;
 
 import com.mengma.ioc.CustomerDao;
 import com.mengma.jdk.MyBeanFactory;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /**
  *动态代理和CGLIB代理测试

@@ -1,6 +1,6 @@
 package com.mengma.reflex;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
